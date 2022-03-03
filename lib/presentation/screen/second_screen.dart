@@ -1,47 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_example/counter_cubit.dart';
+import 'package:flutter_bloc_example/logic/cubit/counter_cubit.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<CounterCubit>(
-      create: (context) => CounterCubit(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class SecondScreen extends StatefulWidget {
+  const SecondScreen({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<SecondScreen> createState() => _SecondScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
-
+class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,21 +30,23 @@ class _MyHomePageState extends State<MyHomePage> {
             BlocConsumer<CounterCubit, CounterState>(
               listener: (context, state) {
                 if (state.wasIncremented == true) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'Incremented',
-                      ),
-                    ),
-                  );
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   const SnackBar(
+                  //     content: Text(
+                  //       'Incremented',
+                  //     ),
+                  //   ),
+                  // );
+                  log('Incremented');
                 } else if (state.wasIncremented == false) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'Decremented',
-                      ),
-                    ),
-                  );
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   const SnackBar(
+                  //     content: Text(
+                  //       'Decremented',
+                  //     ),
+                  //   ),
+                  // );
+                  log('Decremented');
                 }
               },
               builder: (context, state) {
@@ -91,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   tooltip: 'Decrement',
                   child: const Icon(Icons.remove),
+                  heroTag: 'decremented',
                 ),
                 FloatingActionButton(
                   onPressed: () {
@@ -98,9 +73,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   tooltip: 'Increment',
                   child: const Icon(Icons.add),
+                  heroTag: 'incremented',
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            MaterialButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              color: Colors.blue,
+              child: const Text(
+                'Go to Home Screen',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),
