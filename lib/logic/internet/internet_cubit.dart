@@ -55,10 +55,6 @@ class InternetCubit extends Cubit<InternetState> {
     );
   }
 
-  // void wifi() => emit(
-  //       const InternetState(displayConnectionType: 'Wifi');
-  //     );
-
   void emitInternetConnected(ConnectionType _connectionType) {
     emit(InternetConnected(
       connectionType: _connectionType,
