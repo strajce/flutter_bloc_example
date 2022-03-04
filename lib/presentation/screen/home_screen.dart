@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/constants/enums.dart';
 import 'package:flutter_bloc_example/logic/counter/counter_cubit.dart';
+import 'package:flutter_bloc_example/logic/internet/internet_connected.dart';
 import 'package:flutter_bloc_example/logic/internet/internet_cubit.dart';
+import 'package:flutter_bloc_example/logic/internet/internet_disconnected.dart';
 
 class MyHomeScreen extends StatefulWidget {
   const MyHomeScreen({Key? key, required this.title}) : super(key: key);

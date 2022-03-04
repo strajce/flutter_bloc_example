@@ -4,6 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc_example/constants/enums.dart';
+import 'package:flutter_bloc_example/logic/internet/internet_connected.dart';
+import 'package:flutter_bloc_example/logic/internet/internet_disconnected.dart';
+import 'package:flutter_bloc_example/logic/internet/internet_loading.dart';
 
 part 'internet_state.dart';
 
