@@ -37,7 +37,7 @@ class InternetCubit extends Cubit<InternetState> {
             break;
           case ConnectivityResult.none:
             {
-              emitInternetDisconnected();
+              emitInternetDisconnected(ConnectionType.disconnected);
             }
             break;
         }
@@ -52,13 +52,17 @@ class InternetCubit extends Cubit<InternetState> {
     );
   }
 
-  void emitInternetConnected(ConnectionType _connectionType) => emit(
-        InternetConnected(
-          connectionType: _connectionType,
-        ),
-      );
+  // void wifi() => emit(
+  //       const InternetState(displayConnectionType: 'Wifi');
+  //     );
 
-  void emitInternetDisconnected() => emit(
+  void emitInternetConnected(ConnectionType _connectionType) {
+    emit(InternetConnected(
+      connectionType: _connectionType,
+    ));
+  }
+
+  void emitInternetDisconnected(ConnectionType _connectionType) => emit(
         InternetDisconnected(),
       );
 
