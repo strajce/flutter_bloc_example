@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_example/logic/cubit/counter_cubit.dart';
+import 'package:flutter_bloc_example/constants/enums.dart';
+import 'package:flutter_bloc_example/logic/counter/counter_cubit.dart';
+import 'package:flutter_bloc_example/logic/internet/internet_cubit.dart';
 
 class MyHomeScreen extends StatefulWidget {
   const MyHomeScreen({Key? key, required this.title}) : super(key: key);
@@ -24,6 +26,26 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            BlocBuilder(
+              builder: (context, state) {
+                if (state is InternetConnected &&
+                    state.connectionType == ConnectionType.wifi) {
+                  return const Text(
+                    'Wifi',
+                  );
+                } else if (state is InternetConnected &&
+                    state.connectionType == ConnectionType.mobile) {
+                  return const Text(
+                    'Mobile',
+                  );
+                } else if (state is InternetDisconnected) {
+                  return const Text(
+                    'Disconnected',
+                  );
+                }
+                return const CircularProgressIndicator();
+              },
+            ),
             const Text(
               'You have pushed the button this many times:',
             ),
@@ -50,61 +72,71 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 }
               },
               builder: (context, state) {
-                return Text(
-                  state.counterValue.toString(),
-                  style: Theme.of(context).textTheme.headline4,
+                return SizedBox(
+                  child: Column(
+                    children: [
+                      Text(
+                        state.counterValue.toString(),
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          FloatingActionButton(
+                            onPressed: () {
+                              BlocProvider.of<CounterCubit>(context)
+                                  .decrement();
+                            },
+                            tooltip: 'Decrement',
+                            child: const Icon(Icons.remove),
+                            heroTag: 'decremented',
+                          ),
+                          FloatingActionButton(
+                            onPressed: () {
+                              BlocProvider.of<CounterCubit>(context)
+                                  .increment();
+                            },
+                            tooltip: 'Increment',
+                            child: const Icon(Icons.add),
+                            heroTag: 'incremented',
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            '/second',
+                          );
+                        },
+                        color: Colors.blue,
+                        child: const Text(
+                          'Go to Second Screen',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            '/third',
+                          );
+                        },
+                        color: Colors.blue,
+                        child: const Text(
+                          'Go to Third Screen',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FloatingActionButton(
-                  onPressed: () {
-                    BlocProvider.of<CounterCubit>(context).decrement();
-                  },
-                  tooltip: 'Decrement',
-                  child: const Icon(Icons.remove),
-                  heroTag: 'decremented',
-                ),
-                FloatingActionButton(
-                  onPressed: () {
-                    BlocProvider.of<CounterCubit>(context).increment();
-                  },
-                  tooltip: 'Increment',
-                  child: const Icon(Icons.add),
-                  heroTag: 'incremented',
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            MaterialButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/second');
-              },
-              color: Colors.blue,
-              child: const Text(
-                'Go to Second Screen',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            MaterialButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  '/third',
-                );
-              },
-              color: Colors.blue,
-              child: const Text(
-                'Go to Third Screen',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
             ),
           ],
         ),

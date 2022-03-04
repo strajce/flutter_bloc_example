@@ -8,24 +8,28 @@ class AppRouter {
     switch (routeSettings.name) {
       case '/':
         return MaterialPageRoute(
-            builder: (_) => const MyHomeScreen(
-                  title: 'Home Screen',
-                ));
+          builder: (_) => const MyHomeScreen(
+            title: 'Home Screen',
+          ),
+        );
       case '/second':
         return MaterialPageRoute(
-            builder: (_) => const SecondScreen(
-                  title: 'Second Screen',
-                ));
+          builder: (_) => const SecondScreen(
+            title: 'Second Screen',
+          ),
+        );
       case '/third':
         return MaterialPageRoute(
-            builder: (_) => const ThirdScreen(
-                  title: 'Third Screen',
-                ));
+          builder: (_) => const ThirdScreen(
+            title: 'Third Screen',
+          ),
+        );
       default:
         return MaterialPageRoute(
-            builder: (_) => const MyHomeScreen(
-                  title: 'Home Screen',
-                ));
+          builder: (_) => const MyHomeScreen(
+            title: 'Home Screen',
+          ),
+        );
     }
   }
 }

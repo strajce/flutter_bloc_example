@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_example/logic/cubit/counter_cubit.dart';
+import 'package:flutter_bloc_example/logic/counter/counter_cubit.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({Key? key, required this.title}) : super(key: key);
