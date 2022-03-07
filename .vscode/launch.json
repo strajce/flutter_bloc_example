@@ -8,7 +8,6 @@
             "name": "flutter_bloc_example",
             "request": "launch",
             "type": "dart",
-            "program": "lib/presentation/main.dart",
         },
         {
             "name": "flutter_bloc_example (profile mode)",
