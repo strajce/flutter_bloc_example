@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_example/logic/cubit/counter/counter_cubit.dart';
 import 'package:flutter_bloc_example/logic/cubit/internet/internet_cubit.dart';
-import 'package:flutter_bloc_example/logic/cubit/settings_cubit.dart';
+import 'package:flutter_bloc_example/logic/cubit/settings/settings_cubit.dart';
 import 'package:flutter_bloc_example/presentation/router/app_router.dart';
 
 void main() {
