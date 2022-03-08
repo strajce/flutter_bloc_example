@@ -32,29 +32,27 @@ class SettingsScreen extends StatelessWidget {
         },
         child: BlocBuilder<SettingsCubit, SettingsState>(
           builder: (context, state) {
-            return Container(
-              child: Column(
-                children: [
-                  SwitchListTile(
-                    value: state.appNotifications,
-                    onChanged: (newValue) {
-                      context
-                          .read<SettingsCubit>()
-                          .toggleAppNotifications(newValue);
-                    },
-                    title: const Text('App Notifications'),
-                  ),
-                  SwitchListTile(
-                    value: state.emailNotifications,
-                    onChanged: (newValue) {
-                      context
-                          .read<SettingsCubit>()
-                          .toggleEmailNotifications(newValue);
-                    },
-                    title: const Text('Email Notifications'),
-                  ),
-                ],
-              ),
+            return Column(
+              children: [
+                SwitchListTile(
+                  value: state.appNotifications,
+                  onChanged: (newValue) {
+                    context
+                        .read<SettingsCubit>()
+                        .toggleAppNotifications(newValue);
+                  },
+                  title: const Text('App Notifications'),
+                ),
+                SwitchListTile(
+                  value: state.emailNotifications,
+                  onChanged: (newValue) {
+                    context
+                        .read<SettingsCubit>()
+                        .toggleEmailNotifications(newValue);
+                  },
+                  title: const Text('Email Notifications'),
+                ),
+              ],
             );
           },
         ),

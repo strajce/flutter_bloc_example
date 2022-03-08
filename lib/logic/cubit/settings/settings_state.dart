@@ -9,8 +9,6 @@ class SettingsState extends Equatable {
     required this.emailNotifications,
   });
 
-
-
   SettingsState copyWith({
     bool? appNotifications,
     bool? emailNotifications,
